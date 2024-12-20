@@ -1,8 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1734693834" />
-    <testcase name="master_read_write" classname="spi_tests" file="/home/infi/week3/SPI/python_tb/spi_tests.py" lineno="137" time="0.2844207286834717" sim_time_ns="2090500.001" ratio_time="7350026.879814697" />
-    <testcase name="Random_data" classname="spi_tests" file="/home/infi/week3/SPI/python_tb/spi_tests.py" lineno="152" time="6.605670928955078" sim_time_ns="52001500.000999995" ratio_time="7872251.064317835" />
-    <testcase name="All_address" classname="spi_tests" file="/home/infi/week3/SPI/python_tb/spi_tests.py" lineno="164" time="8.630390167236328" sim_time_ns="66561500.00100001" ratio_time="7712455.487086594" />
+    <property name="random_seed" value="1734696818" />
+    <testcase name="master_read_write" classname="spi_tests" file="/home/infi/week3/spi_slave/python_tb/spi_tests.py" lineno="137" time="0.30431103706359863" sim_time_ns="2090500.001" ratio_time="6869616.104535511" />
+    <testcase name="Random_data" classname="spi_tests" file="/home/infi/week3/spi_slave/python_tb/spi_tests.py" lineno="152" time="8.050857305526733" sim_time_ns="52001500.000999995" ratio_time="6459125.783449438" />
+    <testcase name="All_address" classname="spi_tests" file="/home/infi/week3/spi_slave/python_tb/spi_tests.py" lineno="164" time="9.767266035079956" sim_time_ns="66561500.00100001" ratio_time="6814752.43552687" />
   </testsuite>
 </testsuites>
