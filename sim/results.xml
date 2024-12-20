@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1734693834" />
+    <testcase name="master_read_write" classname="spi_tests" file="/home/infi/week3/SPI/python_tb/spi_tests.py" lineno="137" time="0.2844207286834717" sim_time_ns="2090500.001" ratio_time="7350026.879814697" />
+    <testcase name="Random_data" classname="spi_tests" file="/home/infi/week3/SPI/python_tb/spi_tests.py" lineno="152" time="6.605670928955078" sim_time_ns="52001500.000999995" ratio_time="7872251.064317835" />
+    <testcase name="All_address" classname="spi_tests" file="/home/infi/week3/SPI/python_tb/spi_tests.py" lineno="164" time="8.630390167236328" sim_time_ns="66561500.00100001" ratio_time="7712455.487086594" />
+  </testsuite>
+</testsuites>
