@@ -46,14 +46,14 @@ module spi_slave (/*AUTOARG*/
    
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
-   wire [15:0]	data_out; // From smem of spi_mem.v
+   logic [15:0]		data_out;		// From smem of spi_mem.v
    // End of automatics
    
    /*AUTOREGINPUT*/
    // Beginning of automatic reg inputs (for undeclared instantiated-module inputs)
-   reg [6:0]	add; // To smem of spi_mem.v
-   reg [15:0]	data_in; // To smem of spi_mem.v
-   reg		rwb;			// To smem of spi_mem.v
+   logic [6:0]		add;			// To smem of spi_mem.v
+   logic [15:0]		data_in;		// To smem of spi_mem.v
+   logic		rwb;			// To smem of spi_mem.v
    // End of automatics
    assign rstn = reset_n;
    
@@ -88,7 +88,7 @@ module spi_slave (/*AUTOARG*/
 	 case(state)
 	   WAIT: begin
 	       counter <= 5'd0;
-	       serial_buffer <= 16'd0;
+	       //serial_buffer <= 16'd0;
 	       rwb <= 0;
 	       mem_op_done <= 1'b0;
 	       sdo <= 1'b1;
@@ -183,9 +183,10 @@ module spi_slave (/*AUTOARG*/
 
 	// Count the last A0 bit and declare its done
 	MEM_OP: begin
+	   serial_buffer <= data_out;
 	   if (counter == 7) begin
 	      mem_op_done <= 1'b1; 
-	      counter <= 0;
+	      counter <= 0;	      
 	   end else begin
 	      counter <= counter + 1'b1;      
 	   end

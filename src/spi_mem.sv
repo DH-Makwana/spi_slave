@@ -32,7 +32,7 @@ module spi_mem (/*AUTOARG*/
    input	rwb;
    input	rstn;
 
-   logic [15:0]	mem [127:0];
+   logic [127:0]	[15:0]mem;
       
    always @(posedge clk) begin
       if(rstn == 1'b0) begin
