@@ -43,7 +43,7 @@ module spi_tb (/*AUTOARG*/);
 		      .csz		(csz));
 
    initial begin
-      $dumpfile("./waves/spi_tb.vcd");
+      $dumpfile("spi_tb.vcd");
       $dumpvars;
    end
       
