@@ -43,7 +43,8 @@ module spi_slave (/*AUTOARG*/
    logic [2:0]	state;		// Current state of FSM
    logic	mem_op_done;	// Flag to represent end memory opration
    logic	add_fetch_done; // Flag to represent end of address fetch
-   
+   //logic [15:0]	serial_buffer_wire; // For mux for multidriven error
+      
    /*AUTOWIRE*/
    // Beginning of automatic wires (for undeclared instantiated-module outputs)
    logic [15:0]		data_out;		// From smem of spi_mem.v
@@ -81,14 +82,13 @@ module spi_slave (/*AUTOARG*/
 	 data_in <= 16'h0;
 	 mem_op_done <= 1'h0;
 	 rwb <= 1'h0;
-	 serial_buffer <= 16'h0;
+	 //serial_buffer <= 16'h0;
 	 // End of automatics
       end else begin // if (reset_n == 1'b0)
 	 
 	 case(state)
 	   WAIT: begin
 	       counter <= 5'd0;
-	       //serial_buffer <= 16'd0;
 	       rwb <= 0;
 	       mem_op_done <= 1'b0;
 	       sdo <= 1'b1;
@@ -119,8 +119,6 @@ module spi_slave (/*AUTOARG*/
 	   // Send the R/W direcly to MEM to ensure data gets read prior to MEM_READ
 	   MEM_OP: begin
 	      rwb <= sdi;
-	      serial_buffer <= data_out;
-
 	      // mem_op_done will be flagged by other always block
 	      // Meaning A0 bit or r/w has been read
 	      if(mem_op_done) begin
@@ -132,6 +130,7 @@ module spi_slave (/*AUTOARG*/
 	      end else begin
 		 state <= MEM_OP;		 
 	      end
+	      mem_op_done <= (counter == 4'd7) ? 1'b0 : 1'b1;	      
 	   end // case: MEM_OP
 
 
@@ -168,7 +167,7 @@ module spi_slave (/*AUTOARG*/
 	 endcase // case (state)
       end 
    end 
-
+   
    // Always block sync with sclk
    always_ff @(posedge sclk) begin
       case(state)
@@ -177,7 +176,6 @@ module spi_slave (/*AUTOARG*/
 	ADDRESS_FETCH: begin
 	    counter <= counter + 1;
 	    serial_buffer <= {serial_buffer[14:0], sdi};
-	    mem_op_done <= 1'b0;
 	    add_fetch_done <= (counter == 6) ? 1'b1 : 1'b0;
 	end
 
@@ -185,7 +183,6 @@ module spi_slave (/*AUTOARG*/
 	MEM_OP: begin
 	   serial_buffer <= data_out;
 	   if (counter == 7) begin
-	      mem_op_done <= 1'b1; 
 	      counter <= 0;	      
 	   end else begin
 	      counter <= counter + 1'b1;      
