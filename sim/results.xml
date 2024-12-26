@@ -1,8 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1734782661" />
-    <testcase name="master_read_write" classname="spi_tests" file="/home/infi/week3/spi_slave/python_tb/spi_tests.py" lineno="1" time="0.3686404228210449" sim_time_ns="2090500.001" ratio_time="5670837.682428617" />
-    <testcase name="Random_data" classname="spi_tests" file="/home/infi/week3/spi_slave/python_tb/spi_tests.py" lineno="1" time="9.238139629364014" sim_time_ns="52001500.000999995" ratio_time="5629001.301919049" />
-    <testcase name="All_address" classname="spi_tests" file="/home/infi/week3/spi_slave/python_tb/spi_tests.py" lineno="1" time="11.986936807632446" sim_time_ns="66561500.00100001" ratio_time="5552836.48101142" />
+    <property name="random_seed" value="1735111679" />
+    <testcase name="master_read_write" classname="spi_tests" file="/home/infi/spi_slave/python_tb/spi_tests.py" lineno="137" time="0.28512024879455566" sim_time_ns="2090500.001" ratio_time="7331994.166806148" />
   </testsuite>
 </testsuites>

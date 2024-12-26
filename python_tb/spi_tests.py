@@ -93,7 +93,7 @@ class create_master:
             received_data = 0
             for i in range(16):
                 received_data = received_data << 1
-                received_data += self.slave.sdo.value
+                received_data += int(self.slave.sdo.value)
                 await FallingEdge(self.slave.sclk)
             
             # Turn off the master clk
