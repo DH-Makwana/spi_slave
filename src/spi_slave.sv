@@ -76,7 +76,7 @@ module spi_slave (/*AUTOARG*/
 	 sdo <= 1'b1;	 
 	 /*AUTORESET*/
 	 // Beginning of autoreset for uninitialized flops
-	 add <= 7'h0;
+	 //add <= 7'h0;
 	 add_fetch_done <= 1'h0;
 	 counter <= 4'h0;
 	 data_in <= 16'h0;
@@ -88,10 +88,11 @@ module spi_slave (/*AUTOARG*/
 	 
 	 case(state)
 	   WAIT: begin
-	       counter <= 5'd0;
-	       rwb <= 0;
-	       mem_op_done <= 1'b0;
-	       sdo <= 1'b1;
+	      counter <= 5'd0;
+	      rwb <= 0;
+	      mem_op_done <= 1'b0;
+	      sdo <= 1'b1;
+	      add <= 7'h7F;
 	      
 	      // Start the FSM only if chip was selected and was not here from final states
 	      // Reset add_fetch_done only if there was a period when chip was unselected
@@ -109,10 +110,11 @@ module spi_slave (/*AUTOARG*/
 	      if(add_fetch_done == 1'b1) begin
 		 // Take the ADD from buffer and send to MEM
 		 state <= MEM_OP;
-		 add <= serial_buffer;		 
+		 add <= serial_buffer[6:0];		 
 	      end else begin
  		 // Wait till the add_fetch_done is flagged from other always block
-		 state <= ADDRESS_FETCH;		 
+		 state <= ADDRESS_FETCH;
+		 add <= 7'h0;		 
 	      end
 	   end
 	   
