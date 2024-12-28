@@ -2352,19 +2352,900 @@ Optimizing module spi_slave.
 5.23. Finished OPT passes. (There is nothing left to do.)
 
 6. Generating Graphviz representation of design.
-Writing dot description to `/home/infi/.yosys_show.dot'.
+Writing dot description to `synth_proc.dot'.
 Dumping module spi_slave to page 1.
-Exec: { test -f '/home/infi/.yosys_show.dot.pid' && fuser -s '/home/infi/.yosys_show.dot.pid' 2> /dev/null; } || ( echo $$ >&3; exec xdot '/home/infi/.yosys_show.dot'; ) 3> '/home/infi/.yosys_show.dot.pid' &
+Exec: { test -f 'synth_proc.dot.pid' && fuser -s 'synth_proc.dot.pid' 2> /dev/null; } || ( echo $$ >&3; exec xdot 'synth_proc.dot'; ) 3> 'synth_proc.dot.pid' &
 
-7. Executing Verilog backend.
+7. Executing FSM pass (extract and optimize FSM).
 
-7.1. Executing BMUXMAP pass.
+7.1. Executing FSM_DETECT pass (finding FSMs in design).
 
-7.2. Executing DEMUXMAP pass.
+7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+8. Executing OPT pass (performing simple optimizations).
+
+8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spi_mem..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \spi_slave..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~9 debug messages>
+
+8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spi_mem.
+  Optimizing cells in module \spi_slave.
+Performed a total of 0 changes.
+
+8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+8.9. Finished OPT passes. (There is nothing left to do.)
+
+9. Generating Graphviz representation of design.
+Writing dot description to `synth_fsm.dot'.
+Dumping module spi_slave to page 1.
+Exec: { test -f 'synth_fsm.dot.pid' && fuser -s 'synth_fsm.dot.pid' 2> /dev/null; } || ( echo $$ >&3; exec xdot 'synth_fsm.dot'; ) 3> 'synth_fsm.dot.pid' &
+
+10. Executing SYNTH pass.
+
+10.1. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `spi_slave'. Setting top module to spi_slave.
+
+10.1.1. Analyzing design hierarchy..
+Top module:  \spi_slave
+Used module:     \spi_mem
+
+10.1.2. Analyzing design hierarchy..
+Top module:  \spi_slave
+Used module:     \spi_mem
+Removed 0 unused modules.
+
+10.2. Executing PROC pass (convert processes to netlists).
+
+10.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+10.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+10.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+10.2.4. Executing PROC_INIT pass (extract init attributes).
+
+10.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+10.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+10.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+10.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+10.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+10.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+10.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+10.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+10.5. Executing CHECK pass (checking for obvious problems).
+Checking module spi_mem...
+Checking module spi_slave...
+Warning: multiple conflicting drivers for spi_slave.\add_fetch_done:
+    port Q[0] of cell $auto$ff.cc:266:slice$226 ($adffe)
+    port Q[0] of cell $auto$ff.cc:266:slice$241 ($dffe)
+Found and reported 1 problems.
+
+10.6. Executing OPT pass (performing simple optimizations).
+
+10.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+10.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spi_mem..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \spi_slave..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~9 debug messages>
+
+10.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spi_mem.
+  Optimizing cells in module \spi_slave.
+Performed a total of 0 changes.
+
+10.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+10.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+10.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.6.9. Finished OPT passes. (There is nothing left to do.)
+
+10.7. Executing FSM pass (extract and optimize FSM).
+
+10.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+10.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+10.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+10.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+10.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+10.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+10.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+10.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+10.8. Executing OPT pass (performing simple optimizations).
+
+10.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+10.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spi_mem..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \spi_slave..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~9 debug messages>
+
+10.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spi_mem.
+  Optimizing cells in module \spi_slave.
+Performed a total of 0 changes.
+
+10.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+10.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+10.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.8.9. Finished OPT passes. (There is nothing left to do.)
+
+10.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 20 bits (of 32) from port B of cell spi_mem.$shiftx$../src/spi_mem.sv:0$13 ($shiftx).
+Removed top 21 bits (of 33) from port A of cell spi_mem.$neg$../src/spi_mem.sv:0$19 ($neg).
+Converting cell spi_mem.$neg$../src/spi_mem.sv:0$19 ($neg) from signed to unsigned.
+Removed top 1 bits (of 12) from port A of cell spi_mem.$neg$../src/spi_mem.sv:0$19 ($neg).
+Removed top 1 bits (of 4) from port B of cell spi_slave.$eq$../src/spi_slave.sv:185$45 ($eq).
+Removed top 1 bits (of 4) from port B of cell spi_slave.$eq$../src/spi_slave.sv:191$47 ($eq).
+Removed top 2 bits (of 3) from mux cell spi_slave.$procmux$101 ($mux).
+Removed top 2 bits (of 3) from mux cell spi_slave.$procmux$107 ($mux).
+Removed top 1 bits (of 3) from mux cell spi_slave.$procmux$111 ($mux).
+Removed top 1 bits (of 3) from port B of cell spi_slave.$procmux$124_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell spi_slave.$procmux$138_CMP0 ($eq).
+Removed top 2 bits (of 3) from wire spi_slave.$procmux$101_Y.
+Removed top 2 bits (of 3) from wire spi_slave.$procmux$107_Y.
+Removed top 1 bits (of 3) from wire spi_slave.$procmux$111_Y.
+
+10.10. Executing PEEPOPT pass (run peephole optimizers).
+
+10.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+10.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module spi_mem:
+  creating $macc model for $neg$../src/spi_mem.sv:0$19 ($neg).
+  creating $alu model for $macc $neg$../src/spi_mem.sv:0$19.
+  creating $alu cell for $neg$../src/spi_mem.sv:0$19: $auto$alumacc.cc:485:replace_alu$277
+  created 1 $alu and 0 $macc cells.
+Extracting $alu and $macc cells in module spi_slave:
+  creating $macc model for $add$../src/spi_slave.sv:206$51 ($add).
+  creating $alu model for $macc $add$../src/spi_slave.sv:206$51.
+  creating $alu cell for $add$../src/spi_slave.sv:206$51: $auto$alumacc.cc:485:replace_alu$280
+  created 1 $alu and 0 $macc cells.
+
+10.13. Executing SHARE pass (SAT-based resource sharing).
+
+10.14. Executing OPT pass (performing simple optimizations).
+
+10.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+10.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spi_mem..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \spi_slave..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~9 debug messages>
+
+10.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spi_mem.
+  Optimizing cells in module \spi_slave.
+Performed a total of 0 changes.
+
+10.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+10.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+10.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.14.9. Finished OPT passes. (There is nothing left to do.)
+
+10.15. Executing MEMORY pass.
+
+10.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+10.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+10.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+10.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+10.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+10.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+10.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+10.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+10.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+10.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+10.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+10.17. Executing OPT pass (performing simple optimizations).
+
+10.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+<suppressed ~16 debug messages>
+
+10.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+10.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$256 ($dffe) from module spi_slave (D = $procmux$135_Y, Q = \add, rval = 7'1111111).
+
+10.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+Removed 1 unused cells and 6 unused wires.
+<suppressed ~2 debug messages>
+
+10.17.5. Rerunning OPT passes. (Removed registers in this run.)
+
+10.17.6. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.17.7. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+10.17.8. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.17.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+10.17.10. Finished fast OPT passes.
+
+10.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+10.19. Executing OPT pass (performing simple optimizations).
+
+10.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+10.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spi_mem..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \spi_slave..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+10.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spi_mem.
+  Optimizing cells in module \spi_slave.
+    Consolidated identical input bits for $mux cell $procmux$111:
+      Old ports: A=2'00, B=2'10, Y=$auto$wreduce.cc:461:run$276 [1:0]
+      New ports: A=1'0, B=1'1, Y=$auto$wreduce.cc:461:run$276 [1]
+      New connections: $auto$wreduce.cc:461:run$276 [0] = 1'0
+    Consolidated identical input bits for $mux cell $procmux$91:
+      Old ports: A=3'100, B=3'000, Y=$procmux$91_Y
+      New ports: A=1'1, B=1'0, Y=$procmux$91_Y [2]
+      New connections: $procmux$91_Y [1:0] = 2'00
+    Consolidated identical input bits for $mux cell $procmux$96:
+      Old ports: A=3'101, B=3'000, Y=$procmux$96_Y
+      New ports: A=1'1, B=1'0, Y=$procmux$96_Y [0]
+      New connections: $procmux$96_Y [2:1] = { $procmux$96_Y [0] 1'0 }
+  Optimizing cells in module \spi_slave.
+Performed a total of 3 changes.
+
+10.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+10.19.6. Executing OPT_SHARE pass.
+
+10.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+10.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+<suppressed ~2 debug messages>
+
+10.19.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+10.19.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spi_mem..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \spi_slave..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+10.19.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spi_mem.
+  Optimizing cells in module \spi_slave.
+Performed a total of 0 changes.
+
+10.19.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+10.19.14. Executing OPT_SHARE pass.
+
+10.19.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.19.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+10.19.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.19.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+10.19.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spi_mem..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \spi_slave..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+10.19.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spi_mem.
+  Optimizing cells in module \spi_slave.
+Performed a total of 0 changes.
+
+10.19.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+10.19.22. Executing OPT_SHARE pass.
+
+10.19.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.19.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+10.19.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+10.19.26. Finished OPT passes. (There is nothing left to do.)
+
+10.20. Executing TECHMAP pass (map to technology primitives).
+
+10.20.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+10.20.2. Continuing TECHMAP pass.
+Using template $paramod$32a7b7b86c07519b7537abc18e96f0331f97914d\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $sdffce.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $eq.
+Using template $paramod$0d149ffe75563ef6fcc1a3dddc59d00af28651a7\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $adffe.
+Using template $paramod$c5c783b17ab1d780abfad8cfe6563a0a7b47a3b0\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $or.
+Using template $paramod$d31bf4d7d72e59528d18fbd4f322e9d608532043\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $dffe.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000100 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod$constmap:8436f0abaaa4f2c674dba5985561895135ce592b$paramod$05326b526a4cde800472350f2b9f825c686f7478\_90_shift_shiftx for cells of type $shiftx.
+Using template $paramod$31b3272de9494c923ffcf0520c4f324d36c33cf5\_90_alu for cells of type $alu.
+Using template $paramod$constmap:63a64f817835102e76cc092899cd4e1bec125bb5$paramod$f0405e03c2663e8eab1a9b94ee3f7f9d2f591007\_90_shift_shiftx for cells of type $shift.
+Analyzing pattern of constant bits for this cell:
+Creating constmapped module `$paramod$constmap:19c0e85d81f990efcca5fa1010ab6a2f3a8572ff$paramod$f0405e03c2663e8eab1a9b94ee3f7f9d2f591007\_90_shift_shiftx'.
+
+10.20.27. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:19c0e85d81f990efcca5fa1010ab6a2f3a8572ff$paramod$f0405e03c2663e8eab1a9b94ee3f7f9d2f591007\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$976.
+    dead port 2/2 on $mux $procmux$970.
+    dead port 2/2 on $mux $procmux$964.
+    dead port 2/2 on $mux $procmux$958.
+    dead port 2/2 on $mux $procmux$952.
+    dead port 2/2 on $mux $procmux$946.
+    dead port 2/2 on $mux $procmux$940.
+    dead port 2/2 on $mux $procmux$934.
+    dead port 2/2 on $mux $procmux$928.
+    dead port 2/2 on $mux $procmux$922.
+    dead port 2/2 on $mux $procmux$916.
+    dead port 2/2 on $mux $procmux$910.
+Removed 12 multiplexer ports.
+<suppressed ~876 debug messages>
+
+10.20.28. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:19c0e85d81f990efcca5fa1010ab6a2f3a8572ff$paramod$f0405e03c2663e8eab1a9b94ee3f7f9d2f591007\_90_shift_shiftx.
+<suppressed ~22 debug messages>
+Removed 0 unused cells and 17 unused wires.
+Using template $paramod$constmap:19c0e85d81f990efcca5fa1010ab6a2f3a8572ff$paramod$f0405e03c2663e8eab1a9b94ee3f7f9d2f591007\_90_shift_shiftx for cells of type $shift.
+Using extmapper simplemap for cells of type $sdffe.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100001 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~409 debug messages>
+
+10.21. Executing OPT pass (performing simple optimizations).
+
+10.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+<suppressed ~178271 debug messages>
+Optimizing module spi_slave.
+<suppressed ~74 debug messages>
+
+10.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+<suppressed ~29442 debug messages>
+Finding identical cells in module `\spi_slave'.
+<suppressed ~72 debug messages>
+Removed a total of 9838 cells.
+
+10.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+Removed 14519 unused cells and 459 unused wires.
+<suppressed ~14521 debug messages>
+
+10.21.5. Finished fast OPT passes.
+
+10.22. Executing ABC pass (technology mapping using ABC).
+
+10.22.1. Extracting gate netlist of module `\spi_mem' to `<abc-temp-dir>/input.blif'..
+Extracted 12949 gates and 15023 wires to a netlist network with 2073 inputs and 2065 outputs.
+
+10.22.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+10.22.1.2. Re-integrating ABC results.
+ABC RESULTS:            ANDNOT cells:     4237
+ABC RESULTS:               MUX cells:     2032
+ABC RESULTS:              NAND cells:        2
+ABC RESULTS:               NOR cells:        3
+ABC RESULTS:               NOT cells:       29
+ABC RESULTS:                OR cells:     6449
+ABC RESULTS:             ORNOT cells:       44
+ABC RESULTS:               XOR cells:        6
+ABC RESULTS:        internal signals:    10885
+ABC RESULTS:           input signals:     2073
+ABC RESULTS:          output signals:     2065
+Removing temp directory.
+
+10.22.2. Extracting gate netlist of module `\spi_slave' to `<abc-temp-dir>/input.blif'..
+Extracted 167 gates and 214 wires to a netlist network with 45 inputs and 46 outputs.
+
+10.22.2.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+10.22.2.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:        9
+ABC RESULTS:            ANDNOT cells:       61
+ABC RESULTS:               MUX cells:       22
+ABC RESULTS:              NAND cells:        6
+ABC RESULTS:               NOR cells:        3
+ABC RESULTS:               NOT cells:        4
+ABC RESULTS:                OR cells:       30
+ABC RESULTS:             ORNOT cells:        8
+ABC RESULTS:              XNOR cells:        2
+ABC RESULTS:               XOR cells:        2
+ABC RESULTS:        internal signals:      123
+ABC RESULTS:           input signals:       45
+ABC RESULTS:          output signals:       46
+Removing temp directory.
+
+10.23. Executing OPT pass (performing simple optimizations).
+
+10.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+<suppressed ~1008 debug messages>
+Optimizing module spi_slave.
+
+10.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+10.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+10.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+Removed 4 unused cells and 2289 unused wires.
+<suppressed ~6 debug messages>
+
+10.23.5. Finished fast OPT passes.
+
+10.24. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `spi_slave'. Setting top module to spi_slave.
+
+10.24.1. Analyzing design hierarchy..
+Top module:  \spi_slave
+Used module:     \spi_mem
+
+10.24.2. Analyzing design hierarchy..
+Top module:  \spi_slave
+Used module:     \spi_mem
+Removed 0 unused modules.
+
+10.25. Printing statistics.
+
+=== spi_mem ===
+
+   Number of wires:              12790
+   Number of wire bits:          14888
+   Number of public wires:           7
+   Number of public wire bits:    2090
+   Number of ports:                  6
+   Number of port bits:             42
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              14862
+     $_ANDNOT_                    4237
+     $_DFFE_PP_                   2048
+     $_MUX_                       2032
+     $_NAND_                         2
+     $_NOR_                          3
+     $_NOT_                         25
+     $_ORNOT_                       44
+     $_OR_                        6449
+     $_SDFFE_PN0P_                  16
+     $_XOR_                          6
+
+=== spi_slave ===
+
+   Number of wires:                143
+   Number of wire bits:            219
+   Number of public wires:          16
+   Number of public wire bits:      72
+   Number of ports:                  6
+   Number of port bits:              6
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                199
+     $_ANDNOT_                      61
+     $_AND_                          9
+     $_DFFE_PN0P_                   42
+     $_DFFE_PN1P_                    1
+     $_DFFE_PP_                      1
+     $_MUX_                         22
+     $_NAND_                         6
+     $_NOR_                          3
+     $_NOT_                          4
+     $_ORNOT_                        8
+     $_OR_                          30
+     $_SDFFCE_PP1P_                  7
+     $_XNOR_                         2
+     $_XOR_                          2
+     spi_mem                         1
+
+=== design hierarchy ===
+
+   spi_slave                         1
+     spi_mem                         1
+
+   Number of wires:              12933
+   Number of wire bits:          15107
+   Number of public wires:          23
+   Number of public wire bits:    2162
+   Number of ports:                 12
+   Number of port bits:             48
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              15060
+     $_ANDNOT_                    4298
+     $_AND_                          9
+     $_DFFE_PN0P_                   42
+     $_DFFE_PN1P_                    1
+     $_DFFE_PP_                   2049
+     $_MUX_                       2054
+     $_NAND_                         8
+     $_NOR_                          6
+     $_NOT_                         29
+     $_ORNOT_                       52
+     $_OR_                        6479
+     $_SDFFCE_PP1P_                  7
+     $_SDFFE_PN0P_                  16
+     $_XNOR_                         2
+     $_XOR_                          8
+
+10.26. Executing CHECK pass (checking for obvious problems).
+Checking module spi_mem...
+Checking module spi_slave...
+Warning: multiple conflicting drivers for spi_slave.\add_fetch_done:
+    port Q[0] of cell $auto$ff.cc:266:slice$493 ($_DFFE_PN0P_)
+    port Q[0] of cell $auto$ff.cc:266:slice$631 ($_DFFE_PP_)
+Found and reported 1 problems.
+
+11. Executing OPT pass (performing simple optimizations).
+
+11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \spi_mem..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \spi_slave..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \spi_mem.
+  Optimizing cells in module \spi_slave.
+Performed a total of 0 changes.
+
+11.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\spi_mem'.
+Finding identical cells in module `\spi_slave'.
+Removed a total of 0 cells.
+
+11.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \spi_mem..
+Finding unused cells or wires in module \spi_slave..
+
+11.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module spi_mem.
+Optimizing module spi_slave.
+
+11.9. Finished OPT passes. (There is nothing left to do.)
+
+12. Generating Graphviz representation of design.
+Writing dot description to `synth.dot'.
+Dumping module spi_slave to page 1.
+Exec: { test -f 'synth.dot.pid' && fuser -s 'synth.dot.pid' 2> /dev/null; } || ( echo $$ >&3; exec xdot 'synth.dot'; ) 3> 'synth.dot.pid' &
+
+13. Executing Verilog backend.
+
+13.1. Executing BMUXMAP pass.
+
+13.2. Executing DEMUXMAP pass.
 Dumping module `\spi_mem'.
 Dumping module `\spi_slave'.
 
-Warnings: 1 unique messages, 1 total
-End of script. Logfile hash: 6d42c07523, CPU: user 0.18s system 0.03s, MEM: 33.73 MB peak
+Warnings: 3 unique messages, 3 total
+End of script. Logfile hash: 0d80e63fe0, CPU: user 29.76s system 0.41s, MEM: 403.39 MB peak
 Yosys 0.48+45 (git sha1 1ef4c7f56, g++ 12.2.0-14 -fPIC -O3)
-Time spent: 27% 3x opt_dff (0 sec), 23% 3x opt_clean (0 sec), ...
+Time spent: 34% 24x opt_clean (10 sec), 25% 17x opt_dff (7 sec), ...
