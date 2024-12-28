@@ -1,6 +1,9 @@
 PWD = $(shell pwd)/..
 export PYTHONPATH = $(PWD)/python_tb/
 
+all:
+	rm -rf $(PWD)/sim/sim_build
+
 #defaults
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
@@ -15,7 +18,6 @@ TOPLEVEL = spi_tb
 MODULE = spi_tests
 
 include $(shell cocotb-config --makefiles)/Makefile.sim
-#all:
-#	rm -rf $(PWD)/sim/sim_build
+
 wave:
 	gtkwave $(PWD)/sim/waves/$(TOPLEVEL).vcd

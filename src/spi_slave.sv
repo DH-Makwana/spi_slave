@@ -78,7 +78,7 @@ module spi_slave (/*AUTOARG*/
 	 // Beginning of autoreset for uninitialized flops
 	 //add <= 7'h0;
 	 add_fetch_done <= 1'h0;
-	 counter <= 4'h0;
+	 //counter <= 4'h0;
 	 data_in <= 16'h0;
 	 mem_op_done <= 1'h0;
 	 rwb <= 1'h0;
@@ -88,7 +88,7 @@ module spi_slave (/*AUTOARG*/
 	 
 	 case(state)
 	   WAIT: begin
-	      counter <= 5'd0;
+	      //counter <= 5'd0;
 	      rwb <= 0;
 	      mem_op_done <= 1'b0;
 	      sdo <= 1'b1;
@@ -141,7 +141,7 @@ module spi_slave (/*AUTOARG*/
 	      if((counter == 4'b0) & (mem_op_done == 1'b0)) begin
 		 // Go back to WAIT state
 		 state <= WAIT;
-		 counter <= 0;
+		 // counter <= 0;
 		 mem_op_done <= 1'b1;		 
 	      end else begin
 		 state <= MEM_READ;
@@ -158,7 +158,7 @@ module spi_slave (/*AUTOARG*/
 		 // Go back to WAIT state
 		 state <= WAIT;		 
 		 data_in <= serial_buffer;
-		 counter <= 0;
+		 // counter <= 0;
 		 mem_op_done <= 1'b1;		 
 	      end else begin
 		 state <= MEM_WRITE;
@@ -171,40 +171,46 @@ module spi_slave (/*AUTOARG*/
    end 
    
    // Always block sync with sclk
-   always_ff @(posedge sclk) begin
-      case(state)
+   always_ff @(posedge sclk or negedge reset_n) begin
+      if (reset_n == 1'b0) begin
+	 counter <= 4'b0000;
+	 serial_buffer <= 16'h0;	 
+      end else begin
+	 case(state)
 
-	// Take the MSBs and push them left to get the ADD
-	ADDRESS_FETCH: begin
-	    counter <= counter + 1;
-	    serial_buffer <= {serial_buffer[14:0], sdi};
-	    add_fetch_done <= (counter == 6) ? 1'b1 : 1'b0;
-	end
-
-	// Count the last A0 bit and declare its done
-	MEM_OP: begin
-	   serial_buffer <= data_out;
-	   if (counter == 7) begin
-	      counter <= 0;	      
-	   end else begin
-	      counter <= counter + 1'b1;      
+	   // Take the MSBs and push them left to get the ADD
+	   ADDRESS_FETCH: begin
+	      counter <= counter + 1'b1;
+	      serial_buffer <= {serial_buffer[14:0], sdi};
+	      add_fetch_done <= (counter == 6) ? 1'b1 : 1'b0;
 	   end
-	end
 
-	// Shift the buffre read from memory as the sdo is begin assigned MSB by previos always block
-	MEM_READ: begin
-	   counter <= counter + 1'b1;	   
-	   serial_buffer <= serial_buffer << 1'b1;	   
-	end
+	   // Count the last A0 bit and declare its done
+	   MEM_OP: begin
+	      serial_buffer <= data_out;
+	      if (counter == 4'd7) begin
+		 counter <= 4'b0000;	      
+	      end else begin
+		 counter <= counter + 1'b1;      
+	      end
+	   end
 
-	// Push the MSBs to right and add the sdi bit 
-	MEM_WRITE: begin
-	   counter <= counter + 1'b1;
-	   serial_buffer <= {serial_buffer[14:0], sdi};	   
-	end
-	
-      endcase 
+	   // Shift the buffre read from memory as the sdo is begin assigned MSB by previos always block
+	   MEM_READ: begin
+	      counter <= counter + 1'b1;	   
+	      serial_buffer <= serial_buffer << 1'b1;	   
+	   end
+
+	   // Push the MSBs to right and add the sdi bit 
+	   MEM_WRITE: begin
+	      counter <= counter + 1'b1;
+	      serial_buffer <= {serial_buffer[14:0], sdi};	   
+	   end
+	   
+	 endcase 
+      end // else: !if(reset_n == 1'b0)
       
-   end // always_ff @ (posedge sclk)
+   end // always_ff @ (posedge sclk or negedge reset_n)
+   
       
 endmodule // spi_slave

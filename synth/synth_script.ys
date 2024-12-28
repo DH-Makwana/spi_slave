@@ -1,0 +1,7 @@
+read_verilog -sv ../src/*.sv
+hierarchy -top spi_slave
+proc; opt
+# fsm; opt
+# synth; opt
+show spi_slave
+write_verilog -sv synth_spi_slave.sv

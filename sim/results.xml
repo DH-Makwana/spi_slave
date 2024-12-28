@@ -1,14 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1735234918" />
-    <testcase name="master_read_write" classname="spi_tests" file="/home/infi/spi_slave/python_tb/spi_tests.py" lineno="137" time="1.848456621170044" sim_time_ns="520500.001" ratio_time="281586.2677213013">
-      <failure message="Test failed with RANDOM_SEED=1735234918" />
-    </testcase>
-    <testcase name="Random_data" classname="spi_tests" file="/home/infi/spi_slave/python_tb/spi_tests.py" lineno="152" time="1.820622205734253" sim_time_ns="520500.001" ratio_time="285891.27352211083">
-      <failure message="Test failed with RANDOM_SEED=1735234918" />
-    </testcase>
-    <testcase name="All_address" classname="spi_tests" file="/home/infi/spi_slave/python_tb/spi_tests.py" lineno="164" time="1.8151016235351562" sim_time_ns="520500.00100000005" ratio_time="286760.8040514315">
-      <failure message="Test failed with RANDOM_SEED=1735234918" />
-    </testcase>
+    <property name="random_seed" value="1735405694" />
+    <testcase name="master_read_write" classname="spi_tests" file="/home/infi/spi_slave/python_tb/spi_tests.py" lineno="139" time="0.37471580505371094" sim_time_ns="2090687.501" ratio_time="5579395.031656926" />
+    <testcase name="Random_data" classname="spi_tests" file="/home/infi/spi_slave/python_tb/spi_tests.py" lineno="154" time="10.129603385925293" sim_time_ns="52001687.500999995" ratio_time="5133635.100980795" />
+    <testcase name="All_address" classname="spi_tests" file="/home/infi/spi_slave/python_tb/spi_tests.py" lineno="166" time="14.026206731796265" sim_time_ns="66561687.50100001" ratio_time="4745523.060779512" />
   </testsuite>
 </testsuites>

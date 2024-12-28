@@ -126,6 +126,8 @@ async def init_slave(dut):
     await cocotb.start(slave_clk.start())
 
     # PO-Reset --------------------------------------------------
+    slave.reset_n.value = 1
+    await Timer(0.75*slave_period, "ns")
     slave.reset_n.value = 0
     await Timer(slave_period, "ns")
     slave.reset_n.value = 1
