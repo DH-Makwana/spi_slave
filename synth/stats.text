@@ -1,0 +1,199 @@
+
+18. Printing statistics.
+
+=== spi_mem ===
+
+   Number of wires:               8479
+   Number of wire bits:          10577
+   Number of public wires:           7
+   Number of public wire bits:    2090
+   Number of ports:                  6
+   Number of port bits:             42
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               8503
+     $_MUX_                         32
+     sky130_fd_sc_lp__a211o_1       16
+     sky130_fd_sc_lp__a211oi_1      28
+     sky130_fd_sc_lp__a21boi_1       3
+     sky130_fd_sc_lp__a21o_1        24
+     sky130_fd_sc_lp__a21oi_1      434
+     sky130_fd_sc_lp__a221o_1       11
+     sky130_fd_sc_lp__a221oi_1     315
+     sky130_fd_sc_lp__a22o_1       214
+     sky130_fd_sc_lp__a22oi_1      554
+     sky130_fd_sc_lp__a2bb2oi_1      1
+     sky130_fd_sc_lp__a311o_1        2
+     sky130_fd_sc_lp__a311oi_1       8
+     sky130_fd_sc_lp__a31o_1        21
+     sky130_fd_sc_lp__a31oi_1       23
+     sky130_fd_sc_lp__a32o_1       121
+     sky130_fd_sc_lp__a32oi_1        7
+     sky130_fd_sc_lp__a41oi_1        4
+     sky130_fd_sc_lp__and2_1        23
+     sky130_fd_sc_lp__and3_1         4
+     sky130_fd_sc_lp__dfrtp_1       16
+     sky130_fd_sc_lp__edfxbp_1    2048
+     sky130_fd_sc_lp__inv_1         12
+     sky130_fd_sc_lp__mux2_2       500
+     sky130_fd_sc_lp__mux2i_lp       4
+     sky130_fd_sc_lp__mux4_2        28
+     sky130_fd_sc_lp__nand2_1     1882
+     sky130_fd_sc_lp__nand2b_1       9
+     sky130_fd_sc_lp__nand3_1      120
+     sky130_fd_sc_lp__nand3b_1      12
+     sky130_fd_sc_lp__nand4_1       58
+     sky130_fd_sc_lp__nor2_1       483
+     sky130_fd_sc_lp__nor2b_1        3
+     sky130_fd_sc_lp__nor3_1       152
+     sky130_fd_sc_lp__nor4_1         5
+     sky130_fd_sc_lp__o211ai_1       3
+     sky130_fd_sc_lp__o21ai_1     1152
+     sky130_fd_sc_lp__o221ai_1       3
+     sky130_fd_sc_lp__o22ai_1        2
+     sky130_fd_sc_lp__o2bb2ai_1     99
+     sky130_fd_sc_lp__o311a_1        2
+     sky130_fd_sc_lp__o311ai_1       3
+     sky130_fd_sc_lp__o31a_1         7
+     sky130_fd_sc_lp__o31ai_1       15
+     sky130_fd_sc_lp__o32a_1         3
+     sky130_fd_sc_lp__o41ai_1       15
+     sky130_fd_sc_lp__or2_1          7
+     sky130_fd_sc_lp__or3_1          2
+     sky130_fd_sc_lp__or3b_1         4
+     sky130_fd_sc_lp__or4_1          1
+     sky130_fd_sc_lp__xnor2_1        8
+
+   Area for cell type $_MUX_ is unknown!
+
+   Chip area for module '\spi_mem': 146745.907200
+     of which used for sequential elements: 98768.332800 (67.31%)
+
+=== spi_slave ===
+
+   Number of wires:                124
+   Number of wire bits:            200
+   Number of public wires:          15
+   Number of public wire bits:      71
+   Number of ports:                  6
+   Number of port bits:              6
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                173
+     $_MUX_                         50
+     sky130_fd_sc_lp__a211o_1        1
+     sky130_fd_sc_lp__a21boi_1       1
+     sky130_fd_sc_lp__a21o_1         1
+     sky130_fd_sc_lp__a21oi_1        2
+     sky130_fd_sc_lp__a22o_1         1
+     sky130_fd_sc_lp__a32o_1         1
+     sky130_fd_sc_lp__a41oi_1        1
+     sky130_fd_sc_lp__and2_1         7
+     sky130_fd_sc_lp__and4_1         1
+     sky130_fd_sc_lp__dfrtp_1       42
+     sky130_fd_sc_lp__dfstp_1        1
+     sky130_fd_sc_lp__edfxbp_1       8
+     sky130_fd_sc_lp__inv_1          9
+     sky130_fd_sc_lp__mux2_2        15
+     sky130_fd_sc_lp__nand2_1        5
+     sky130_fd_sc_lp__nand3_1        1
+     sky130_fd_sc_lp__nand3b_1       2
+     sky130_fd_sc_lp__nand4_1        1
+     sky130_fd_sc_lp__nor2_1         5
+     sky130_fd_sc_lp__nor2b_1        2
+     sky130_fd_sc_lp__nor3_1         4
+     sky130_fd_sc_lp__nor3b_1        1
+     sky130_fd_sc_lp__o2111ai_1      1
+     sky130_fd_sc_lp__o21ai_1        1
+     sky130_fd_sc_lp__o21bai_1       1
+     sky130_fd_sc_lp__o2bb2ai_1      1
+     sky130_fd_sc_lp__or2_1          2
+     sky130_fd_sc_lp__xnor2_1        1
+     sky130_fd_sc_lp__xor2_1         3
+     spi_mem                         1
+
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type \spi_mem is unknown!
+
+   Chip area for module '\spi_slave': 2496.700800
+     of which used for sequential elements: 1895.702400 (75.93%)
+
+=== design hierarchy ===
+
+   spi_slave                         1
+     spi_mem                         1
+
+   Number of wires:               8603
+   Number of wire bits:          10777
+   Number of public wires:          22
+   Number of public wire bits:    2161
+   Number of ports:                 12
+   Number of port bits:             48
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               8675
+     $_MUX_                         82
+     sky130_fd_sc_lp__a211o_1       17
+     sky130_fd_sc_lp__a211oi_1      28
+     sky130_fd_sc_lp__a21boi_1       4
+     sky130_fd_sc_lp__a21o_1        25
+     sky130_fd_sc_lp__a21oi_1      436
+     sky130_fd_sc_lp__a221o_1       11
+     sky130_fd_sc_lp__a221oi_1     315
+     sky130_fd_sc_lp__a22o_1       215
+     sky130_fd_sc_lp__a22oi_1      554
+     sky130_fd_sc_lp__a2bb2oi_1      1
+     sky130_fd_sc_lp__a311o_1        2
+     sky130_fd_sc_lp__a311oi_1       8
+     sky130_fd_sc_lp__a31o_1        21
+     sky130_fd_sc_lp__a31oi_1       23
+     sky130_fd_sc_lp__a32o_1       122
+     sky130_fd_sc_lp__a32oi_1        7
+     sky130_fd_sc_lp__a41oi_1        5
+     sky130_fd_sc_lp__and2_1        30
+     sky130_fd_sc_lp__and3_1         4
+     sky130_fd_sc_lp__and4_1         1
+     sky130_fd_sc_lp__dfrtp_1       58
+     sky130_fd_sc_lp__dfstp_1        1
+     sky130_fd_sc_lp__edfxbp_1    2056
+     sky130_fd_sc_lp__inv_1         21
+     sky130_fd_sc_lp__mux2_2       515
+     sky130_fd_sc_lp__mux2i_lp       4
+     sky130_fd_sc_lp__mux4_2        28
+     sky130_fd_sc_lp__nand2_1     1887
+     sky130_fd_sc_lp__nand2b_1       9
+     sky130_fd_sc_lp__nand3_1      121
+     sky130_fd_sc_lp__nand3b_1      14
+     sky130_fd_sc_lp__nand4_1       59
+     sky130_fd_sc_lp__nor2_1       488
+     sky130_fd_sc_lp__nor2b_1        5
+     sky130_fd_sc_lp__nor3_1       156
+     sky130_fd_sc_lp__nor3b_1        1
+     sky130_fd_sc_lp__nor4_1         5
+     sky130_fd_sc_lp__o2111ai_1      1
+     sky130_fd_sc_lp__o211ai_1       3
+     sky130_fd_sc_lp__o21ai_1     1153
+     sky130_fd_sc_lp__o21bai_1       1
+     sky130_fd_sc_lp__o221ai_1       3
+     sky130_fd_sc_lp__o22ai_1        2
+     sky130_fd_sc_lp__o2bb2ai_1    100
+     sky130_fd_sc_lp__o311a_1        2
+     sky130_fd_sc_lp__o311ai_1       3
+     sky130_fd_sc_lp__o31a_1         7
+     sky130_fd_sc_lp__o31ai_1       15
+     sky130_fd_sc_lp__o32a_1         3
+     sky130_fd_sc_lp__o41ai_1       15
+     sky130_fd_sc_lp__or2_1          9
+     sky130_fd_sc_lp__or3_1          2
+     sky130_fd_sc_lp__or3b_1         4
+     sky130_fd_sc_lp__or4_1          1
+     sky130_fd_sc_lp__xnor2_1        9
+     sky130_fd_sc_lp__xor2_1         3
+
+   Area for cell type $_MUX_ is unknown!
+
+   Chip area for top module '\spi_slave': 149242.608000
+     of which used for sequential elements: 98768.332800 (66.18%)

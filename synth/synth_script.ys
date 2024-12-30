@@ -13,12 +13,13 @@ show -prefix synth spi_slave
 # Write the gate-level for post-synth simulations
 write_verilog -sv synth_spi_slave.sv
 
-read_liberty  -ignore_miss_func ~/skywater-pdk/libraries/sky130_fd_sc_lp/latest/timing/sky130_fd_sc_lp__ss_150C_1v65.lib 
-
 # Map the library for stat
 techmap
 
-abc -fast -liberty ~/skywater-pdk/libraries/sky130_fd_sc_lp/latest/timing/sky130_fd_sc_lp__ss_150C_1v65.lib 
+abc
+
+abc -liberty ~/skywater-pdk/libraries/sky130_fd_sc_lp/latest/timing/sky130_fd_sc_lp__ss_150C_1v65.lib 
+dfflibmap -liberty ~/skywater-pdk/libraries/sky130_fd_sc_lp/latest/timing/sky130_fd_sc_lp__ss_150C_1v65.lib 
 
 clean -purge
 
