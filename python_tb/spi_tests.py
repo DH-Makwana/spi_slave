@@ -107,7 +107,8 @@ class create_master:
         
     async def check_read_write_at(self, slave_address, data=0xF0F7):
         await self.operate(slave_address, rwb = 0, slave_data = data)
-        assert (await self.operate(slave_address, rwb = 1)) == data, f"Read/Write Fail for ADD:0x{slave_address:02x} & DATA:0x{data:04x}"
+        assert (await self.operate(slave_address, rwb = 1)) == data, \
+        f"Read/Write Fail for ADD:0x{slave_address:02x} & DATA:0x{data:04x}"
 
 
 slave_period = 250      #ns
